@@ -3,6 +3,8 @@
 ## Debian stack
 I used debian as base for all my other application following thhis schema:
 
+<img src="https://github.com/Seba0691/Dockerfiles/raw/master/docker_arch.png">
+
 - **Debian custom** : provides a common layer where the most common utility are installed
 
 - **Python stack** : provides a layer where all the python environment is installed along with utilities such as pip 
