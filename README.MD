@@ -1,12 +1,22 @@
 # Collection of Dockerfile
 
-Collection of my Dockerfiles used to setup my different environments
+## Debian stack
+I used debian as base for all my other application following thhis schema:
 
-- [Jupyter Notebook](https://hub.docker.com/r/phate/jupyter_notebook_custom/) : Dockerfile that creates an image starting from the latest build of jupyter notebook and installs some useful extensions
+- **Debian custom** : provides a common layer where the most common utility are installed
 
-- **Kali custom** : A kali linux container customized with the tool i use the most
+- **Python stack** : provides a layer where all the python environment is installed along with utilities such as pip 
 
-- **node-stack** : A node js environment with npm and bower
+- **Node stack** : provides a layer where all the node environment is installed along with the most common utilities such as npm and bower 
 
-- **realms dev** :
- an environment ssetup to test and develop a custom version of realms wiki
+- **Chrisper** : images containing the application [Chrisper](https://github.com/invernizzi/Chrisper)
+
+## Jupyter Notebooks
+Images that builds my [Jupyter Notebook](https://hub.docker.com/r/phate/jupyter_notebook_custom/) environment installing and activating my favorites extensions.
+
+## Kali linux
+A kali linux images customized with the tool I use the most.
+
+
+## Realms-wiki-dev
+Images that creates an environment setup to test and develop a custom version of [Realms-wiki](https://github.com/scragg0x/realms-wiki)

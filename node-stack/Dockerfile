@@ -1,9 +1,6 @@
-FROM debian
+FROM debian_custom
 
-RUN apt-get install -y git
-
-RUN apt-get -y update && \
-	apt-get install -y nodejs && \
+RUN apt-get install -y nodejs && \
 	apt-get install -y npm && \
 	ln -s "$(which nodejs)" /usr/bin/node
 
