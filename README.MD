@@ -17,7 +17,7 @@ I used debian as base for all my other application following thhis schema:
 Images that builds my [Jupyter Notebook](https://hub.docker.com/r/phate/jupyter_notebook_custom/) environment installing and activating my favorites extensions.
 
 ## Kali linux
-A kali linux images customized with the tool I use the most.
+A kali linux images customized with the tools I use the most.
 
 
 ## Realms-wiki-dev
