@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "usage : launch_as_service <executable_path> <port>"
+    exit 1
+fi
+
+# Enable core dump
+ulimit -c unlimited
+# start the service and relaunch it endlessy when crashes
+while true; do nc -vv -l -p $2 -e $1; done

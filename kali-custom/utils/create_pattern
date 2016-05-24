@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "usage : create_pattern <#chars>"
+    exit 1
+fi
+
+# start the service and relaunch it endlessy when crashes
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb $1
