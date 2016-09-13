@@ -44,6 +44,8 @@ RUN cd capstone && ./make.sh install
 # install ropper
 RUN pip install ropper
 
+RUN apt-get install -y libc6-dev-i386
+
 USER phate
 
 CMD zsh

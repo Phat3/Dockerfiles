@@ -11,42 +11,36 @@ USER deploy
 WORKDIR /home/deploy/
 
 # Download the latest version of anaconda
-RUN wget http://repo.continuum.io/archive/Anaconda3-4.0.0-Linux-x86_64.sh
+RUN wget http://repo.continuum.io/archive/Anaconda3-4.1.1-Linux-x86_64.sh
 
 # Install anaconda
-RUN bash Anaconda3-4.0.0-Linux-x86_64.sh -b
+RUN bash Anaconda3-4.1.1-Linux-x86_64.sh -b
 
-# Install jupyter notebook
-RUN ./anaconda3/bin/conda install jupyter
-
-# Install jupyter extensions
+## Install jupyter extensions
 RUN mkdir -p -m 700 ./.jupyter/ && \
-    echo "c.NotebookApp.ip = '*'" >> ./.jupyter/jupyter_notebook_config.py
+   echo "c.NotebookApp.ip = '*'" >> ./.jupyter/jupyter_notebook_config.py
 
-RUN git clone https://github.com/ipython-contrib/IPython-notebook-extensions.git
-
-RUN mkdir -p .local/share/jupyter
-
-RUN cd IPython-notebook-extensions && $HOME/anaconda3/bin/python setup.py install
+RUN ./anaconda3/bin/conda install -c conda-forge jupyter_contrib_nbextensions -y
 
 # Enable some of the extensions
-RUN ./anaconda3/bin/jupyter nbextension enable usability/autosavetime/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/chrome-clipboard/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/dragdrop/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/rubberband/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/highlighter/highlighter && \
-    ./anaconda3/bin/jupyter nbextension enable usability/runtools/main && \
-    ./anaconda3/bin/jupyter nbextension enable config/config_menu/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/codefolding/main && \
-    ./anaconda3/bin/jupyter nbextension enable codemirrormode/skill/skill && \
-    ./anaconda3/bin/jupyter nbextension enable usability/search-replace/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/toc2/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/spellchecker/main && \
-    ./anaconda3/bin/jupyter nbextension enable usability/tree-filter/main && \
-    ./anaconda3/bin/jupyter nbextension enable styling/table_beautifier/main
+RUN ./anaconda3/bin/jupyter nbextension enable autosavetime/main && \
+    ./anaconda3/bin/jupyter nbextension enable chrome-clipboard/main && \
+    ./anaconda3/bin/jupyter nbextension enable dragdrop/main && \
+    ./anaconda3/bin/jupyter nbextension enable rubberband/main && \
+    ./anaconda3/bin/jupyter nbextension enable highlighter/highlighter && \
+    ./anaconda3/bin/jupyter nbextension enable runtools/main && \
+    ./anaconda3/bin/jupyter nbextension enable codefolding/main && \
+    ./anaconda3/bin/jupyter nbextension enable search-replace/main && \
+    ./anaconda3/bin/jupyter nbextension enable toc2/main && \
+    ./anaconda3/bin/jupyter nbextension enable spellchecker/main && \
+    ./anaconda3/bin/jupyter nbextension enable table_beautifier/main &&\
+    ./anaconda3/bin/jupyter nbextension enable scratchpad/main &&\
+    ./anaconda3/bin/jupyter nbextension enable tree-filter/index &&\
+    ./anaconda3/bin/jupyter nbextension enable move_selected_cells/main &&\
+#    ./anaconda3/bin/jupyter nbextension enable code_prettify/main
 
 # remove trash
-RUN rm Anaconda3-4.0.0-Linux-x86_64.sh
+RUN rm Anaconda3-4.1.1-Linux-x86_64.sh
 
 # make the folder that will be the notebook root
 RUN mkdir notebooks
