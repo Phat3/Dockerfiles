@@ -22,6 +22,8 @@ RUN mkdir -p -m 700 ./.jupyter/ && \
 
 RUN ./anaconda3/bin/conda install -c conda-forge jupyter_contrib_nbextensions -y
 
+RUN ./anaconda3/bin/pip install yapf
+
 # Enable some of the extensions
 RUN ./anaconda3/bin/jupyter nbextension enable autosavetime/main && \
     ./anaconda3/bin/jupyter nbextension enable chrome-clipboard/main && \
@@ -37,7 +39,7 @@ RUN ./anaconda3/bin/jupyter nbextension enable autosavetime/main && \
     ./anaconda3/bin/jupyter nbextension enable scratchpad/main &&\
     ./anaconda3/bin/jupyter nbextension enable tree-filter/index &&\
     ./anaconda3/bin/jupyter nbextension enable move_selected_cells/main &&\
-#    ./anaconda3/bin/jupyter nbextension enable code_prettify/main
+    ./anaconda3/bin/jupyter nbextension enable code_prettify/code_prettify
 
 # remove trash
 RUN rm Anaconda3-4.1.1-Linux-x86_64.sh
