@@ -15,13 +15,13 @@ RUN apt-get install -y zsh
 # install compatibility libs for 32bit
 RUN apt-get install -y lib32z1 lib32ncurses5
 
-# create the user
-RUN useradd -m -s /usr/bin/zsh phate
-
 # add some custom utilities
 ADD ./utils/* /usr/local/bin/ 
 
 RUN chmod +x -R /usr/local/bin/
+
+# create the user
+RUN useradd -m -s /usr/bin/zsh phate
 
 USER phate
 
@@ -45,6 +45,13 @@ RUN cd capstone && ./make.sh install
 RUN pip install ropper
 
 RUN apt-get install -y libc6-dev-i386
+
+# install strace
+RUN apt-get update -y && apt-get install -y strace
+
+# add a dummy password to the local user and add it to sudoers
+# just in case you want to install something to try before add it to the dockerfile
+RUN echo phate:phate | chpasswd && sudo adduser phate sudo
 
 USER phate
 

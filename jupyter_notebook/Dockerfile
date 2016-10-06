@@ -47,6 +47,14 @@ RUN rm Anaconda3-4.1.1-Linux-x86_64.sh
 # make the folder that will be the notebook root
 RUN mkdir notebooks
 
+USER root
+
+RUN apt-get update -y
+
+RUN apt-get install -y libfontconfig1 libXrender1 libsm6 libfreetype6 libglib2.0-0 libxext6 libqt5gui5
+
+USER deploy
+
 WORKDIR /home/deploy/notebooks
 
 EXPOSE 8888
