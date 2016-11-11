@@ -49,6 +49,8 @@ RUN apt-get install -y libc6-dev-i386
 # install strace
 RUN apt-get update -y && apt-get install -y strace
 
+RUN apt-get install -y shellnoob
+
 # add a dummy password to the local user and add it to sudoers
 # just in case you want to install something to try before add it to the dockerfile
 RUN echo phate:phate | chpasswd && sudo adduser phate sudo
